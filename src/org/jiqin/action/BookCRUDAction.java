@@ -17,28 +17,31 @@ public class BookCRUDAction extends ActionSupport {
 	private Float price;
 	private String brief;
 	private Integer id;
-	
+
 	private boolean success;
 	private int bookId;
 	private BookService bookService;
-	
-	public BookCRUDAction(){
+
+	public BookCRUDAction() {
 		this.bookService = new BookService();
 	}
-	
+
 	public String getAuthor() {
 		return author;
 	}
+
 	public void setAuthor(String author) {
 		this.author = author;
 	}
+
 	public String getBookName() {
 		return bookName;
 	}
+
 	public void setBookName(String bookName) {
 		this.bookName = bookName;
 	}
-	
+
 	public Integer getBookTypeId() {
 		return bookTypeId;
 	}
@@ -50,16 +53,19 @@ public class BookCRUDAction extends ActionSupport {
 	public Float getPrice() {
 		return price;
 	}
+
 	public void setPrice(Float price) {
 		this.price = price;
 	}
+
 	public String getBrief() {
 		return brief;
 	}
+
 	public void setBrief(String brief) {
 		this.brief = brief;
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -84,7 +90,7 @@ public class BookCRUDAction extends ActionSupport {
 		this.bookId = bookId;
 	}
 
-	public String add(){
+	public String add() {
 		Book book = new Book();
 		book.setAuthor(author);
 		book.setBookName(bookName);
@@ -93,16 +99,17 @@ public class BookCRUDAction extends ActionSupport {
 		book.setTypeId(bookTypeId);
 		this.bookService.addBook(book);
 		int bookId = this.bookService.getLastBook();
-		if(bookId == -1){
+		if (bookId == -1) {
 			this.setSuccess(false);
-		}else{
+		}
+		else {
 			this.setSuccess(true);
 			this.setBookId(bookId);
 		}
 		return SUCCESS;
 	}
-	
-	public String modify(){
+
+	public String modify() {
 		Book book = new Book();
 		book.setAuthor(author);
 		book.setBookName(bookName);
@@ -114,12 +121,12 @@ public class BookCRUDAction extends ActionSupport {
 		this.setBookId(this.getId());
 		return SUCCESS;
 	}
-	
-	public String delete(){
+
+	public String delete() {
 		String bookIds = ServletActionContext.getRequest().getParameter("bookIds");
 		String[] ids = bookIds.split("-");
 		List list = new ArrayList();
-		for(int i = 0 ; i < ids.length ; i++){
+		for (int i = 0; i < ids.length; i++) {
 			int id = Integer.valueOf(ids[i]);
 			list.add(id);
 		}
