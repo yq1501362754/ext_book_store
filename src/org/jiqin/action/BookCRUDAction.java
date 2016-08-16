@@ -17,7 +17,6 @@ public class BookCRUDAction extends ActionSupport {
 	private Float price;
 	private String brief;
 	private Integer id;
-	private String name;
 
 	private boolean success;
 	private int bookId;
